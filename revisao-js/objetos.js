@@ -60,6 +60,28 @@ console.table(carro)
 delete carro.ano
 console.table(carro)
 
+console.log('---------------------------------------')
+
+// Exibindo todas as propriedades de um objeto
+// for.. in determina quais as propriedades de um objeto e coloca cada uma delas em uma variável informada pelo usuário (p, no caso) a cada iteração do loop
+for(let p in pessoa)    {
+    console.log(p)
+}
+
+console.log('---------------------------------------')
+
+for(let p in carro) {
+    console.log(p)
+}
+
+console.log('---------------------------------------')
+
+// For .. in para listar propriedades de valores de um objeto
+
+for(let atrib in pessoa)    {
+    console.log(atrib + ' -> ' + pessoa[atrib])
+}
+
 
 
 
