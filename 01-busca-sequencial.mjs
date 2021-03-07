@@ -6,11 +6,11 @@
  * 
  * Caso, percorrido todo o vetor e não encontrado o valor de busca, retorna o valor convencional -1, para indicar a respectiva inexistência.
  */
-function buscaSequencial(vetor, valorBusca) {
+function buscaSequencial(vetor, valorBusca) {  // Vetor = onde eu vou fazer a busca ValorBusca = o que eu estou pesquisando
     for(let i = 0; i < vetor.length; i ++ ) {
-        if(vetor[i] === valorBusca) return i    // retorna a posição onde foi encontrado
+        if(vetor[i] === valorBusca) return i    // retorna a posição onde o valor de busca foi encontrado
     }
-    return -1   // Valor de busca não encontrado
+    return -1   // Caso o valor de busca não encontrado, por que a menor posição valida é 0, então se colocarmos -1 qdo não é encontrado
 }
 
 const primos = [
@@ -90,44 +90,46 @@ const primos = [
 7793, 7817, 7823, 7829, 7841, 7853, 7867, 7873, 7877, 7879, 7883, 7901, 7907,
 7919
 ]
-console.time('Buscando 317')
+
+console.time('Buscando 317')  // Dispara o cronometro para medir o tempo necessário para a busca
 console.log(buscaSequencial (primos, 317))
-console.timeEnd('Buscando 317')
+console.timeEnd('Buscando 317') // Para o cronometro e imprime na tela o tempo gasto
 
-console.time('Buscando 7309')
+console.time('Buscando 7309')   // Dispara o cronometro para medir o tempo necessário para a busca
 console.log(buscaSequencial (primos, 7309))
-console.timeEnd('Buscando 7309')
+console.timeEnd('Buscando 7309')  // Para o cronometro e imprime na tela o tempo gasto 
 
-console.time('Buscando 4001')
+console.time('Buscando 4001')   // Dispara o cronometro para medir o tempo necessário para a busca
 console.log(buscaSequencial (primos, 4001))
-console.timeEnd('Buscando 4001')
+console.timeEnd('Buscando 4001') // Para o cronometro e imprime na tela o tempo gasto
 
-console.time('Buscando 3662')
+console.time('Buscando 3662')   // Dispara o cronometro para medir o tempo necessário para a busca
 console.log(buscaSequencial (primos, 3662))
-console.timeEnd('Buscando 3662')
+console.timeEnd('Buscando 3662') // Para o cronometro e imprime na tela o tempo gasto
 
-
-
-import { nomes } from './includes/vetor-nomes.mjs'
+/* Normalmente o resultado da primeira busca é maior, por que durante a primeira exceução está buscando e carregando os dados para memória, 
+além disso para as proximas busca o javascript otimiza a busca*/
 
 console.log('--------------------------------------------------------------------------------------------')
 
+import { nomes } from './includes/vetor-nomes.mjs'  // Como importar arquivo em outra pasta com extensão mjs (módulo java sript). Atenção no arquivo de dados temos que exportar.
+
 console.time('Buscando ZULEICA')
-console.log(buscaSequencial(nomes, 'ZULEICA')>= 0)
+console.log(buscaSequencial(nomes, 'ZULEICA')>= 0)  // ao colocar > = 0 irá retornar true ou false.
 console.timeEnd('Buscando ZULEICA')
 
 console.time('Buscando PRISCILA')
-console.log(buscaSequencial(nomes, 'PRISCILA')>= 0)
+console.log(buscaSequencial(nomes, 'PRISCILA')>= 0)  // ao colocar > = 0 irá retornar true ou false.
 console.timeEnd('Buscando PRISCILA')
 
 console.time('Buscando CARMEN')
-console.log(buscaSequencial(nomes, 'CARMEN')>= 0)
+console.log(buscaSequencial(nomes, 'CARMEN')>= 0)  // ao colocar > = 0 irá retornar true ou false.
 console.timeEnd('Buscando CARMEN')
 
 console.time('Buscando JAQUELINE')
-console.log(buscaSequencial(nomes, 'JAQUELINE')>= 0)
+console.log(buscaSequencial(nomes, 'JAQUELINE')>= 0)  // ao colocar > = 0 irá retornar true ou false.
 console.timeEnd('Buscando JAQUELINE')
 
 console.time('Buscando ORKUTILSON')
-console.log(buscaSequencial(nomes, 'ORKUTILSON')>= 0)
+console.log(buscaSequencial(nomes, 'ORKUTILSON')>= 0)  // ao colocar > = 0 irá retornar true ou false.
 console.timeEnd('Buscando ORKUTILSON')

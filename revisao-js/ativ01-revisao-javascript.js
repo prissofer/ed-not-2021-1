@@ -14,7 +14,10 @@
    Bahia;BA;564733.18;14812617
 
 */
-
+/*
+   1) Crie objetos para os demais Estados, segundo o modelo acima, e acrescente-os
+      ao vetor estadosNe usando push().
+*/
 let estadosNe = []
 
 let estado1 = {
@@ -23,10 +26,6 @@ let estado1 = {
    area: 21915.08,
    populacao: 2278308
 }
-/*
-   1) Crie objetos para os demais Estados, segundo o modelo acima, e acrescente-os
-      ao vetor estadosNe usando push().
-*/
 let estado2 = {
    nome: 'Alagoas',
    sigla: 'AL',
@@ -78,14 +77,13 @@ let estado9 = {
 
 estadosNe.push(estado1, estado2, estado3, estado4, estado5, estado6, estado7, estado8, estado9)
 
+console.table(estadosNe)
 /*
    2) Escreva uma arrow function que receba dois parâmetros, área e população, e
       calcule a densidade demográfica retornando o resultado da divisão da
       segunda pela primeira. 
 */
-let densidade = (a, p) => a / p
-console.log(densidade(area,populacao))
-
+let densidadeDem = (area, populacao) => (populacao/ area)
 
 /*
    3) Percorra o vetor estadosNe usando um for tradicional. Para cada estado,
@@ -94,17 +92,28 @@ console.log(densidade(area,populacao))
       demográfica' para cada objeto representando um Estado.
 
       Durante este mesmo loop, elimine a propriedade 'sigla' dos objetos.
-
 */
+for (let i = 0; i < estadosNe.length; i++) {
+    estadosNe[i].densidadeDem = densidadeDem(estadosNe[i].area, estadosNe[i].populacao)
+    delete estadosNe[i].sigla
+}
+console.table(estadosNe)
 
 /* 4) Escreva uma arrow function que receba um objeto. Na função, use for..in
       para extrair as propriedades e seus valores e exibi-los com console.log().
 
 */
+let propriedades = (objeto) => {
+    for (let prop in objeto) 
+        console.log(prop + ':' + objeto[prop])
+}
 
 /* 5) Percorra o vetor estadosNe usando for..of. Para cada objeto no vetor,
       invoque a função escrita em 4) para exibi-lo.
-
+*/
+for (let objeto of estadosNe)   {
+    propriedades(objeto)
+}
 /*
    6)
       a) Declare um vetor vazio.
@@ -117,3 +126,9 @@ console.log(densidade(area,populacao))
          já existentes, e assim por diante.
 
 */
+let estados = []
+
+estados.unshift(estadosNe[1].nome)
+estados.splice(2, 0, estadosNe[8].nome, estadosNe[5].nome, estadosNe[7].nome, estadosNe[3].nome, estadosNe[4].nome, estadosNe[6].nome, estadosNe[2].nome)
+estados.push(estadosNe[0].nome)
+console.table(estados)
