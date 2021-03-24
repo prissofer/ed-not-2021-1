@@ -1,12 +1,15 @@
 /*
-Selection Sort
+SELECTION SORT
 
 Trata-se de uma otimização do bibble sort, diminuindo drasticamente o número de trocas necessárias para fazer a ordenação.
+Isola um dos valores do vetor e procura pelo menor valor entre os restantes promovendo a troca caso o primeiro valor seja
+maior que o segundo. Ele irá comparar todo vetor e após irá fazer a troca.
 
-Isola um dos valores do vetor e procura pelo menor valor entre os restantes promovendo a troca caso o primeiro valor seja maior que o segundo.
+Comparando Selction Sorte e Bubble Sort aumenta o número de passadas, mas reduz trocas e comps.
 
 */
-let trocas, pass, comps
+
+let trocas, pass, comps  // Para fazer a variaveis estatiscas tem que ser coocadas fora.
 
 function selectionSort(vetor) {
 
@@ -17,19 +20,19 @@ function selectionSort(vetor) {
         // Este loop vai até a última posição
         for (let j = inicio + 1; j < vetor.length; j++)     {
             if(vetor[j] < vetor[menor]) menor = j
-            comps ++
+            comps++
         }
         return menor
     }
-    //Percurso do vetor até a penúltima posição 
-    for (let i = 0;i <= vetor.length - 2; i ++) {
-        pass ++
+    //Percurso do vetor até a PENÚLTIMA posição com vetor.lenght -2
+    for (let i = 0; i <= vetor.length - 2; i ++) {  
+        pass++  // Cada roda do For é uma passada
         let menor = encontrarMenor(i + 1)
         if (vetor[menor]< vetor[i]) {
-            [ vetor[menor], vetor[i]] = [vetor[i], vetor[menor]]
-            trocas ++
+            [vetor[menor], vetor[i]] = [vetor[i], vetor[menor]] // Para trocar os valores de posição por isso coloco na linha de baixo a trocas++
+            trocas++
         }
-        comps ++
+        comps++  // Colocamos comps++ pois passou pelo IF na linha 28.
     }
 }
 
@@ -40,10 +43,10 @@ selectionSort (nums)
 console.log(nums)
 console.log ({trocas, pass, comps})
 
-import { nomes} from './includes/100-mil-nomes.mjs'
+import { nomes } from './includes/100-mil-nomes.mjs'
 
 console.time('Ordenando nomes...')
 selectionSort(nomes)
 console.timeEnd('Ordenando nomes...')
-console.log('Depois:', nomes)
+console.log('DEPOIS:', nomes)
 console.log({trocas, pass, comps})
