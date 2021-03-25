@@ -38,6 +38,7 @@ import { candidatos } from './includes/candidatos-2018.mjs'
 console.time('Ordenando candidatos...')
 // Ordenando pelo nome de urna (NM_URNA_CANDIDATO)
 selectionSort(candidatos, (obj1, obj2) => obj1.NM_URNA_CANDIDATO > obj2.NM_URNA_CANDIDATO)
+let memoria = process.memoryUsage().heapUsed / 1024 / 1024  // Para vermos a memoria gasta em mega bytes pois divide bytes por kilobites, depois kilobytes divide por megabyte
 console.timeEnd('Ordenando candidatos...')
 console.log('DEPOIS:', candidatos)
-console.log({trocas, pass, comps})
+console.log({trocas, pass, comps, memoria})
