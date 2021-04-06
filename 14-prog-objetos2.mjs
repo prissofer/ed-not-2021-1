@@ -15,6 +15,12 @@ class FormaGeometrica {
     // No constructot(), podem ser feitas validações que, ao falhar em Error. A existência de um ou mais Errors impede que o objeto seja criado.
 
     constructor(base, altura, tipo) {
+
+        // Invocar os stters das propriedades, as validações serão feitas por lá
+        this.base = base
+        this.altura = altura
+        this.tipo = tipo
+
     // base deve ser numérica e seu valor maior que zero
     if (isNaN(base) || base <= 0) throw new Error('A base deve ser númerica e sue valor maior que zero.')
 
@@ -41,10 +47,73 @@ class FormaGeometrica {
     this.#base = base
     this.#altura = altura
     this.#tipo = tipo
+
+
+    //Selando o objeto. Isso impede que novos atributos públicos
+    // sejam adicionados ao objeto após a sua criação
+    Object.seal(this)
     
     console.log('Interno:', this) // This é uma referencia interna ao mesmo objeto, ele mesmo (forma1)
 
     }
+    /*
+    getters: métodos especiais que permintem expor o vlor dos atributos privados de forma SOMENTE-LEITURA , SEM PERMITIR A SUA MODIFICAÇÃO
+    */
+    get base() {
+        return this.#base
+    }
+    
+    get altura() {
+        return this.#altura
+    }
+
+    get tipo() {
+        return this.#tipo
+    }
+
+    /*********************************************************************************************************************************
+        * PRORIEDADE CALCULADA: não retorna um valor armazenado em um
+        * atributo privado. Em vez disso, calcula "ao vivo" em valor e o retorna
+     */
+
+    /*
+        setters: permitem que o mundo externo possa alterar o valor de atributsos privados, caso o novo valor esteja de acordo com as regras de negócio.
+    */
+
+    set base(valor) {
+      // base deve ser numérica e seu valor maior que zero
+    if (isNaN(valor) || valor <= 0) throw new Error('A base deve ser númerica e sue valor maior que zero.')  
+    this.#base = valor // O atributo #base recebe o novo valor validado
+    }
+
+    set altura(valor) {
+        // altura deve ser numérica e seu valor maior que zero
+    if(isNaN(valor) || valor <= 0) throw new Error('A altura deve ser númerica e sue valor maior que zero.')
+    this.#altura = valor  // O atributo #base recebe o novo valor validado
+    }
+
+    set tipo(valor) {
+       // if(tipo !== 'Q' && tipo !== 'T' && tipo !== 'E') -> segunda forma de escrever o algoritmo
+    if(! ['Q', 'T', 'E'].includes(valor)) throw new Error('O tipo deve ser Q, T ou E.') 
+    this.#tipo = valor // O atributo #base recebe o novo valor validado
+    }
+    /*
+        QUando um atributo tem pelo menos um getter ou um setter associado a ele, passamos a nos referir a ele como PROPRIEDADE do objeto.
+    */
+    /******************************************************************************************************************************************** */
+    // Função, dentro de classes, passam a ser denominadas Médotos e perdem a palavra function
+
+    calcularArea()    {
+    switch(this.tipo) {
+        case 'Q':
+            return this.base * this.altura
+        case 'T':
+            return this.base * this.altura / 2
+        default:
+            return (this.base /2) * (this.altura /2) * Math.PI
+    }
+}
+
 }
 
 let forma1, forma2, forma3
@@ -76,5 +145,14 @@ catch(erro) { // O bloco catch() recebe o erro que foi gerado no bloco try. Trat
 }
 
 // Alterando o valor de um atributo do ibjeto Depoois de sua criação, ele não passa mais pela validação e ele aceita qualquer coisa.
-forma1.base = 'abobrinha'
-console.log(forma1)
+//forma1.base = 'abobrinha'
+forma1.base = 10
+forma1.altura = 8.5
+
+console.log({
+    base: forma1.base,          // Acesso ao getter base
+    altura: forma1.altura,      // Acesso ao getter base
+    tipo: forma1.tipo           // Acesso ao getter base
+})
+
+console.log('calcularArea() de forma (métpdo);', forma1.calcularArea())
