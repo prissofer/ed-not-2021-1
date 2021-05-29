@@ -1,6 +1,6 @@
 import{ Stack } from './lib/Stack.mjs'
 
-const texto = 'Socorram-me, subi no ônibus em Marrocos'
+const texto = 'Socorram-me, subi no ônibus em Marrocos'  // Texto é um palindromo
 
 const pilha = new Stack()
 
@@ -9,7 +9,7 @@ for(let i = 0; i < texto.length; i++) {
     pilha.push(texto.charAt(i))
 }
 
-console.log(pilha.print())
+console.log(pilha.print()) // printa o que o sistema está fazendo
 
 let textoRev = ''
 
